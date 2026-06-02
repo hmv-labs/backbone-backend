@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "backbone"
+version = "0.1.0"
+description = "Reusable Django foundation for building scalable web applications."
+requires-python = "==3.13.5"
+dependencies = [
+    "Django==6.0.5",
+    "django-environ==0.13.0",
+    "djangorestframework==3.17.1",
+    "django-cors-headers==4.9.0",
+    "gunicorn==26.0.0",
+    "uvicorn==0.48.0",
+    "uvicorn-worker==0.4.0",
+    "psycopg2-binary==2.9.12",
+    "channels==4.3.2",
+    "channels_redis==4.3.0",
+    "django-redis==6.0.0",
+    "hiredis==3.3.1",
+    "django-allauth==65.18.0",
+    "celery==5.6.3",
+    "django-celery-beat==2.9.0",
+    "sentry-sdk==2.61.0",
+    "django-minio-storage==0.5.9",
+    "requests==2.34.2",
+    "PyJWT==2.13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "django-debug-toolbar==6.3.0",
+    "ipdb==0.13.13",
+    "pre_commit==4.6.0",
+    "daphne==4.2.1",
+]
+
+[tool.setuptools.packages.find]
+include = ["backbone*"]
