@@ -67,6 +67,7 @@ BACKBONE_APPS = [
     "backbone.channels",
     "backbone.cors",
     "backbone.drf",
+    "backbone.internals",
     "backbone.minio",
     "backbone.sentry",
 ]
