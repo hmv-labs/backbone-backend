@@ -60,7 +60,13 @@ def configure(settings):
     settings["HEADLESS_ADAPTER"] = "backbone.auth.adapter.AccountHeadlessAdapter"
     settings["HEADLESS_CLIENTS"] = ("browser",)
     settings["HEADLESS_ONLY"] = True
+
+    # https://docs.allauth.org/en/dev/headless/configuration.html
+
     settings["HEADLESS_FRONTEND_URLS"] = {
+        "account_confirm_email": FRONTEND_PUBLIC_URL + "/confirm/email/{key}",
+        "account_reset_password_from_key": FRONTEND_PUBLIC_URL + "/confirm/password-reset/{key}",
+
         # Fallback in case the state containing the `next` URL is lost
         # and the handshake with the third-party provider fails.
         "socialaccount_login_error": f"{FRONTEND_PUBLIC_URL}/socialaccount-provider-callback",
