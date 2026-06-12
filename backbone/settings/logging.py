@@ -4,8 +4,7 @@ from backbone.env import env
 
 class RelativePathnameFilter(logging.Filter):
     def filter(self, record):
-        # TODO
-        if "desu/backend/" in record.pathname:
+        if "backbone/backend/" in record.pathname:
             bit = record.pathname.split("backend/")[1]
         elif "site-packages/" in record.pathname:
             bit = record.pathname.split("site-packages/")[1]
@@ -37,6 +36,18 @@ LOGGING = {
             "class": "logging.StreamHandler",
             "formatter": "verbose",
             "filters": ["relative_pathname"],
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["stream"],
+            "propagate": False,
+            "level": "INFO",
+        },
+        "backbone": {
+            "handlers": ["stream"],
+            "propagate": False,
+            "level": env("LOG_LEVEL"),
         },
     },
 }
