@@ -11,8 +11,8 @@ urlpatterns = [
 for app in settings.BACKBONE_APPS:
     try:
         app_urls = import_module(f"{app}.urls")
-
-        urlpatterns += [path("", include(app_urls))]
+        namespace = app.replace("backbone.", "")
+        urlpatterns += [path(f"{namespace}/", include(app_urls, namespace))]
     except ModuleNotFoundError:
         continue
 

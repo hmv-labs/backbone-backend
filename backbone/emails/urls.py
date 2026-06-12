@@ -5,7 +5,7 @@ app_name = "backbone.emails"
 
 urlpatterns = [
     path(
-        "emails/email-templates/",
+        "email-templates/",
         views.EmailTemplateViewSet.as_view(
             {
                 "get": "list",
@@ -14,7 +14,7 @@ urlpatterns = [
         ),
     ),
     path(
-        "emails/email-template-render/",
+        "email-template-render/",
         views.EmailTemplateViewSet.as_view(
             {
                 "post": "render_email_template",
@@ -22,7 +22,7 @@ urlpatterns = [
         ),
     ),
     path(
-        "emails/email-template/<str:name>/",
+        "email-template/<str:name>/",
         views.EmailTemplateViewSet.as_view(
             {
                 "patch": "partial_update",
