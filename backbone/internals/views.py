@@ -1,5 +1,6 @@
 import time
 from django.core import signing
+from django.conf import settings
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.throttling import AnonRateThrottle
@@ -25,6 +26,9 @@ class ChallengeView(generics.views.APIView):
         return super().get_throttles()
 
     def get(self, request):
+        if not settings.BACKBONE_INTERNALS_X_CHALLENGE_ENABLED:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
         # TODO add user-agent sha in the returned token
         # then check in middleware:
         # if token.user_agent_sha != sha256(request.headers["User-Agent"])): raise 403
