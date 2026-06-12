@@ -1,5 +1,6 @@
 from backbone.settings.caches import REDIS_HOST
 
+
 def configure(settings):
     settings["INSTALLED_APPS"] += [
         "channels",
@@ -13,3 +14,10 @@ def configure(settings):
             },
         },
     }
+
+    # dotted path to a function hook that could implement any logic when the user
+    # disconnects from the websocket server
+    # eg: consumer projects could update a last_seen timestamp on User.profile
+    settings["BACKBONE_CHANNELS_POST_DISCONNECT_FUNC"] = (
+        "backbone.channels.utils.post_disconnect_func"
+    )
