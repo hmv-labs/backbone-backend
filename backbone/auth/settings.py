@@ -9,6 +9,7 @@ def configure(settings):
     settings["INSTALLED_APPS"] += [
         "allauth",
         "allauth.account",
+        "allauth.usersessions",
         "allauth.headless",
         "allauth.socialaccount",
         "allauth.socialaccount.providers.google",
@@ -22,7 +23,6 @@ def configure(settings):
         "allauth.account.auth_backends.AuthenticationBackend",  # login by email
     )
 
-    settings["ACCOUNT_ADAPTER"] = "backbone.auth.adapter.AccountAdapter"
 
     # do not send emails to unknown accounts (like password reset to non existing emails)
     settings["ACCOUNT_EMAIL_UNKNOWN_ACCOUNTS"] = False
@@ -35,8 +35,10 @@ def configure(settings):
         "password1*",
         "password2*",
     ]
+    # https://docs.allauth.org/en/dev/account/configuration.html#email-addresses
+    # use just one email address
+    settings["ACCOUNT_CHANGE_EMAIL"] = True
 
-    settings["SOCIALACCOUNT_ADAPTER"] = "backbone.auth.adapter.SocialAccountAdapter"
     settings["SOCIALACCOUNT_PROVIDERS"] = {
         "google": {
             "APPS": [
@@ -57,7 +59,6 @@ def configure(settings):
         },
     }
 
-    settings["HEADLESS_ADAPTER"] = "backbone.auth.adapter.AccountHeadlessAdapter"
     settings["HEADLESS_CLIENTS"] = ("browser",)
     settings["HEADLESS_ONLY"] = True
 
@@ -65,9 +66,16 @@ def configure(settings):
 
     settings["HEADLESS_FRONTEND_URLS"] = {
         "account_confirm_email": FRONTEND_PUBLIC_URL + "/confirm/email/{key}",
-        "account_reset_password_from_key": FRONTEND_PUBLIC_URL + "/confirm/password-reset/{key}",
-
+        "account_reset_password_from_key": FRONTEND_PUBLIC_URL
+        + "/confirm/password-reset/{key}",
+        "account_signup": FRONTEND_PUBLIC_URL + "/signup",
         # Fallback in case the state containing the `next` URL is lost
         # and the handshake with the third-party provider fails.
         "socialaccount_login_error": f"{FRONTEND_PUBLIC_URL}/socialaccount-provider-callback",
     }
+
+    # adapters
+    settings["ACCOUNT_ADAPTER"] = "backbone.auth.adapters.AccountAdapter"
+    settings["HEADLESS_ADAPTER"] = "backbone.auth.adapters.AccountHeadlessAdapter"
+    settings["SOCIALACCOUNT_ADAPTER"] = "backbone.auth.adapters.SocialAccountAdapter"
+    settings["USERSESSIONS_ADAPTER"] = "backbone.auth.adapters.UserSessionsAdapter"
