@@ -1,5 +1,7 @@
-from backbone.env import env
+from backbone.env import env, read_env
 from celery import Celery
+
+read_env()
 
 app = Celery(env("CELERY_APP_NAME"))
 
