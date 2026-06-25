@@ -20,6 +20,7 @@ dependencies = [
     "channels_redis==4.3.0",
     "django-redis==6.0.0",
     "hiredis==3.3.1",
+    "redis==7.4.1",
     "django-allauth==65.18.0",
     "celery==5.6.3",
     "django-celery-beat==2.9.0",
