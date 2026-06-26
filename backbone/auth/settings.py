@@ -1,4 +1,4 @@
-from backbone.env import env
+from backbone.bootstrap import env
 from backbone.settings.common import FRONTEND_PUBLIC_URL
 
 SOCIALACCOUNT_GOOGLE_CLIENT_ID = env.str("SOCIALACCOUNT_GOOGLE_CLIENT_ID", "")

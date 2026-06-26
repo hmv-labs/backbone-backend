@@ -1,4 +1,4 @@
-from backbone.env import env, read_env
+from backbone.bootstrap import env, read_env
 from celery import Celery
 
 read_env()

@@ -1,4 +1,4 @@
-from backbone.env import env
+from backbone.bootstrap import env
 
 
 def configure(settings):

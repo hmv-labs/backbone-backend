@@ -25,6 +25,7 @@ urlpatterns = [
         "email-template/<str:name>/",
         views.EmailTemplateViewSet.as_view(
             {
+                "get": "retrieve",
                 "patch": "partial_update",
                 "delete": "destroy",
             }

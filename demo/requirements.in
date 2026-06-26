@@ -1,0 +1,2 @@
+backbone @ git+ssh://git@github.com/hmv-labs/backbone-backend.git@main
+backbone[dev] @ git+ssh://git@github.com/hmv-labs/backbone-backend.git@main

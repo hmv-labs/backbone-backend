@@ -1,4 +1,4 @@
-from backbone.env import env
+from backbone.bootstrap import env
 from importlib import import_module
 
 from .auth import AUTH_PASSWORD_VALIDATORS

@@ -22,8 +22,6 @@ class WebsocketConsumer(AsyncJsonWebsocketConsumer):
             await self.channel_layer.group_add(group, self.channel_name)
 
     async def connect(self):
-        await self.accept()
-
         self.connection_id = str(uuid.uuid4())
 
         # add to dedicated group for all users
@@ -49,6 +47,8 @@ class WebsocketConsumer(AsyncJsonWebsocketConsumer):
         else:
             # add to dedicated groups
             await self.add_user_to_group(Group.GUESTS)
+
+        await self.accept()
 
     async def disconnect(self, code):
         user: User = self.scope["user"]  # pyright: ignore

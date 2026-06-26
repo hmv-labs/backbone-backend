@@ -1,4 +1,4 @@
-from backbone.env import env
+from backbone.bootstrap import env
 
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_PORT = env("EMAIL_PORT")

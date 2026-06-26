@@ -1,5 +1,5 @@
 import logging
-from backbone.env import env
+from backbone.bootstrap import env
 
 
 class RelativePathnameFilter(logging.Filter):
