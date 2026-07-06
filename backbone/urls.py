@@ -9,7 +9,12 @@ for app in settings.BACKBONE_APPS:
     try:
         app_urls = import_module(f"{app}.urls")
         namespace = app.replace("backbone.", "")
-        urlpatterns += [path(f"{namespace}/", include(app_urls, namespace))]
+        if namespace == "auth":
+            # special case for auth - dont set namespace - so reverse across
+            # allauth code works properly, eg: reverse('google_callback')
+            urlpatterns += [path(f"{namespace}/", include(app_urls))]
+        else:
+            urlpatterns += [path(f"{namespace}/", include(app_urls, namespace))]
     except ModuleNotFoundError:
         continue
 
