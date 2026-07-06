@@ -92,7 +92,9 @@ class AccountAdapter(DefaultAccountAdapter):
 
     def pre_login(self, request: HttpRequest, *a, **kw) -> HttpResponse | None:
         """Overwritten to check honeypot fields are valid"""
-        validate_honeypot(request, min_submit_ms=500)
+        is_social_login = kw["signal_kwargs"] and "sociallogin" in kw["signal_kwargs"]
+        if not is_social_login:
+            validate_honeypot(request, min_submit_ms=500)
         return super().pre_login(request, *a, **kw)
 
     def save_user(self, request: HttpRequest, *a, **kw):

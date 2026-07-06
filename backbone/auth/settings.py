@@ -66,12 +66,11 @@ def configure(settings):
 
     settings["HEADLESS_FRONTEND_URLS"] = {
         "account_confirm_email": FRONTEND_PUBLIC_URL + "/confirm/email/{key}",
-        "account_reset_password_from_key": FRONTEND_PUBLIC_URL
-        + "/confirm/password-reset/{key}",
+        "account_reset_password_from_key": FRONTEND_PUBLIC_URL + "/confirm/password-reset/{key}",
         "account_signup": FRONTEND_PUBLIC_URL + "/signup",
         # Fallback in case the state containing the `next` URL is lost
         # and the handshake with the third-party provider fails.
-        "socialaccount_login_error": f"{FRONTEND_PUBLIC_URL}/socialaccount-provider-callback",
+        "socialaccount_login_error": f"{FRONTEND_PUBLIC_URL}/callback/social-account-provider",
     }
 
     # adapters
