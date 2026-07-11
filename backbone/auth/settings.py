@@ -1,9 +1,6 @@
 from backbone.bootstrap import env
 from backbone.settings.common import FRONTEND_PUBLIC_URL
 
-SOCIALACCOUNT_GOOGLE_CLIENT_ID = env.str("SOCIALACCOUNT_GOOGLE_CLIENT_ID", "")
-SOCIALACCOUNT_GOOGLE_SECRET = env.str("SOCIALACCOUNT_GOOGLE_SECRET", "")
-
 
 def configure(settings):
     settings["INSTALLED_APPS"] += [
@@ -23,7 +20,6 @@ def configure(settings):
         "allauth.account.auth_backends.AuthenticationBackend",  # login by email
     )
 
-
     # do not send emails to unknown accounts (like password reset to non existing emails)
     settings["ACCOUNT_EMAIL_UNKNOWN_ACCOUNTS"] = False
 
@@ -39,12 +35,24 @@ def configure(settings):
     # use just one email address
     settings["ACCOUNT_CHANGE_EMAIL"] = True
 
+    # ############### social accounts ################################################
+    settings["SOCIALACCOUNT_GOOGLE_CLIENT_ID"] = env.str(
+        "SOCIALACCOUNT_GOOGLE_CLIENT_ID", ""
+    )
+    settings["SOCIALACCOUNT_GOOGLE_SECRET"] = env.str("SOCIALACCOUNT_GOOGLE_SECRET", "")
+    settings["SOCIALACCOUNT_FACEBOOK_CLIENT_ID"] = env.str(
+        "SOCIALACCOUNT_FACEBOOK_CLIENT_ID", ""
+    )
+    settings["SOCIALACCOUNT_FACEBOOK_SECRET"] = env.str(
+        "SOCIALACCOUNT_FACEBOOK_SECRET", ""
+    )
+
     settings["SOCIALACCOUNT_PROVIDERS"] = {
         "google": {
             "APPS": [
                 {
-                    "client_id": SOCIALACCOUNT_GOOGLE_CLIENT_ID,
-                    "secret": SOCIALACCOUNT_GOOGLE_SECRET,
+                    "client_id": settings["SOCIALACCOUNT_GOOGLE_CLIENT_ID"],
+                    "secret": settings["SOCIALACCOUNT_GOOGLE_SECRET"],
                     "key": "",
                 },
             ],
@@ -57,7 +65,26 @@ def configure(settings):
             },
             "OAUTH_PKCE_ENABLED": True,
         },
+        # TODO
+        # "facebook": {
+        #     "APPS": [
+        #         {
+        #             "client_id": settings["SOCIALACCOUNT_FACEBOOK_CLIENT_ID"],
+        #             "secret": settings["SOCIALACCOUNT_FACEBOOK_SECRET"],
+        #             "key": "",
+        #         },
+        #     ],
+        #     "SCOPE": [
+        #         "profile",
+        #         "email",
+        #     ],
+        #     "AUTH_PARAMS": {
+        #         "access_type": "offline",
+        #     },
+        #     "OAUTH_PKCE_ENABLED": True,
+        # },
     }
+    # ############### social accounts ################################################
 
     settings["HEADLESS_CLIENTS"] = ("browser",)
     settings["HEADLESS_ONLY"] = True
@@ -66,7 +93,8 @@ def configure(settings):
 
     settings["HEADLESS_FRONTEND_URLS"] = {
         "account_confirm_email": FRONTEND_PUBLIC_URL + "/confirm/email/{key}",
-        "account_reset_password_from_key": FRONTEND_PUBLIC_URL + "/confirm/password-reset/{key}",
+        "account_reset_password_from_key": FRONTEND_PUBLIC_URL
+        + "/confirm/password-reset/{key}",
         "account_signup": FRONTEND_PUBLIC_URL + "/signup",
         # Fallback in case the state containing the `next` URL is lost
         # and the handshake with the third-party provider fails.
