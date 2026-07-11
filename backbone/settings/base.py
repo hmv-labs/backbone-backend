@@ -3,7 +3,13 @@ from importlib import import_module
 
 from .auth import AUTH_PASSWORD_VALIDATORS
 from .caches import REDIS_URL_CACHE, REDIS_URL_BROKER, CACHES
-from .common import FRONTEND_PUBLIC_DOMAIN, FRONTEND_PUBLIC_URL, BASE_DIR
+from .common import (
+    BACKEND_PUBLIC_DOMAIN,
+    BACKEND_PUBLIC_URL,
+    BASE_DIR,
+    FRONTEND_PUBLIC_DOMAIN,
+    FRONTEND_PUBLIC_URL,
+)
 from .email import (
     EMAIL_HOST,
     EMAIL_PORT,
@@ -22,7 +28,11 @@ from .templates import TEMPLATES
 ADMINS = env.list("DJANGO_ADMINS")
 MANAGERS = env.list("DJANGO_MANAGERS")
 
-ALLOWED_HOSTS = [FRONTEND_PUBLIC_DOMAIN, "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    BACKEND_PUBLIC_DOMAIN,
+    FRONTEND_PUBLIC_DOMAIN,
+]
 CSRF_TRUSTED_ORIGINS = [FRONTEND_PUBLIC_URL]
 
 DEBUG = env.bool("APP_DEBUG", default=False)
@@ -59,7 +69,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.postgres",
-    'django_extensions',
+    "django_extensions",
 ]
 
 BACKBONE_APPS = [
