@@ -5,8 +5,10 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    from backbone.bootstrap import read_env
     from pathlib import Path
+
+    from backbone.bootstrap import read_env
+
     read_env(Path(__file__).resolve().parent / ".env")
 
     try:

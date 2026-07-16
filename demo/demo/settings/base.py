@@ -1,5 +1,6 @@
 from pathlib import Path
-from backbone.settings.base import *  # pyright: ignore
+
+from backbone.settings.base import *  # noqa
 
 # Update BASE_DIR
 BASE_DIR = Path(__file__).resolve().parent.parent

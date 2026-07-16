@@ -6,6 +6,7 @@ import sys
 def main():
     """Run administrative tasks."""
     from backbone.bootstrap import read_env
+
     read_env()
     try:
         from django.core.management import execute_from_command_line

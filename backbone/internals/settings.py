@@ -1,5 +1,6 @@
-from backbone.bootstrap import env
 from corsheaders.defaults import default_headers
+
+from backbone.bootstrap import env
 
 
 def configure(settings):

@@ -1,9 +1,8 @@
-from rest_framework.viewsets import ModelViewSet, views
-from rest_framework.response import Response
 from rest_framework import permissions, status
+from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet, views
 
-from . import serializers
-from . import websocket_publisher
+from . import serializers, websocket_publisher
 
 
 class UserViewSet(ModelViewSet):

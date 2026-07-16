@@ -1,13 +1,12 @@
+import logging
 import uuid
 
-import logging
-
-from django.contrib.auth.models import User
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
 from channels_redis.core import RedisChannelLayer
+from django.contrib.auth.models import User
 
-from .utils import post_disconnect, Group
 from . import presence, publishers
+from .utils import Group, post_disconnect
 
 logger = logging.getLogger(__name__)
 

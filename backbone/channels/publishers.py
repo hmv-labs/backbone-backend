@@ -1,7 +1,8 @@
-from . import utils
 import logging
 from functools import wraps
-from typing import Callable, ParamSpec, TypeVar, Tuple, Any, Dict
+from typing import Any, Callable, Dict, ParamSpec, Tuple, TypeVar
+
+from . import utils
 
 logger = logging.getLogger(__name__)
 

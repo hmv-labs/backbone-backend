@@ -1,29 +1,29 @@
-from backbone.bootstrap import env
 from importlib import import_module
 
-from .auth import AUTH_PASSWORD_VALIDATORS
-from .caches import REDIS_URL_CACHE, REDIS_URL_BROKER, CACHES
+from backbone.bootstrap import env
+
+from .auth import AUTH_PASSWORD_VALIDATORS  # noqa
+from .caches import CACHES, REDIS_URL_BROKER, REDIS_URL_CACHE  # noqa
+from .common import BACKEND_PUBLIC_URL  # noqa
 from .common import (
     BACKEND_PUBLIC_DOMAIN,
-    BACKEND_PUBLIC_URL,
     BASE_DIR,
     FRONTEND_PUBLIC_DOMAIN,
     FRONTEND_PUBLIC_URL,
 )
-from .email import (
+from .email import (  # noqa
     EMAIL_HOST,
-    EMAIL_PORT,
-    EMAIL_HOST_USER,
     EMAIL_HOST_PASSWORD,
-    EMAIL_USE_TLS,
-    EMAIL_SUBJECT_PREFIX,
+    EMAIL_HOST_USER,
     EMAIL_HOST_USER_NOREPLY,
+    EMAIL_PORT,
+    EMAIL_SUBJECT_PREFIX,
+    EMAIL_USE_TLS,
     SERVER_EMAIL,
 )
-from .logging import LOGGING
-from .middleware import MIDDLEWARE
-from .templates import TEMPLATES
-
+from .logging import LOGGING  # noqa
+from .middleware import MIDDLEWARE  # noqa
+from .templates import TEMPLATES  # noqa
 
 ADMINS = env.list("DJANGO_ADMINS")
 MANAGERS = env.list("DJANGO_MANAGERS")

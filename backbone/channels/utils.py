@@ -1,10 +1,11 @@
 import logging
-from django.utils.module_loading import import_string
+
 from asgiref.sync import async_to_sync
-from django.contrib.auth.models import User
-from django.conf import settings
 from channels.db import database_sync_to_async
 from channels.layers import get_channel_layer
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.utils.module_loading import import_string
 
 channel_layer = get_channel_layer()
 logger = logging.getLogger(__name__)

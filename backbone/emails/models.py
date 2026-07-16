@@ -2,11 +2,11 @@ import logging
 from typing import List
 
 from django.conf import settings
-from django.utils.module_loading import import_string
 from django.contrib.postgres.fields import ArrayField
 from django.core.mail import EmailMultiAlternatives
 from django.db import models
 from django.template import Context, Template
+from django.utils.module_loading import import_string
 
 logger = logging.getLogger(__name__)
 

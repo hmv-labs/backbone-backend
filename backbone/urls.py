@@ -1,7 +1,8 @@
+from importlib import import_module
+
 from django.conf import settings
 from django.conf.urls.static import static
-from importlib import import_module
-from django.urls import path, include
+from django.urls import include, path
 
 urlpatterns = []
 

@@ -1,6 +1,6 @@
+from django.template import Context, Template
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from django.template import Context, Template
 
 from backbone.drf.permissions import SuperuserOnlyPermission
 

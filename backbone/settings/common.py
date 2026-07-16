@@ -1,5 +1,6 @@
-from backbone.bootstrap import env
 from pathlib import Path
+
+from backbone.bootstrap import env
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 

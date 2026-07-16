@@ -1,11 +1,8 @@
 import json
 import logging
+from typing import Any
 
 from allauth.account.adapter import DefaultAccountAdapter
-from django.http import HttpResponse
-from django.db.models import signals
-from django.dispatch import receiver
-from django.contrib.auth.signals import user_logged_out
 from allauth.account.models import EmailAddress
 from allauth.core.exceptions import ImmediateHttpResponse
 from allauth.headless.adapter import DefaultHeadlessAdapter
@@ -13,16 +10,19 @@ from allauth.headless.internal.restkit.response import APIResponse
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from allauth.usersessions.adapter import DefaultUserSessionsAdapter
 from allauth.usersessions.models import UserSession
+from django.contrib.auth.models import AbstractBaseUser, User
+from django.contrib.auth.signals import user_logged_out
+from django.core.exceptions import ValidationError
+from django.db.models import signals
+from django.dispatch import receiver
+from django.http import HttpRequest, HttpResponse
+from rest_framework import status
+
 from backbone.emails.tasks import send_email
 from backbone.internals.honeypot import is_honeypot_valid
-from django.contrib.auth.models import User, AbstractBaseUser
-from django.core.exceptions import ValidationError
-from django.http import HttpRequest
-from rest_framework import status
-from typing import Any
 
-from .serializers import UserSerializer
 from . import websocket_publisher
+from .serializers import UserSerializer
 
 logger = logging.getLogger(__name__)
 
