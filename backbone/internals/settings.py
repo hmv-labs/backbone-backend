@@ -28,8 +28,8 @@ def configure(settings):
         # these are resolved inside XChallengeMiddleware
 
         settings["BACKBONE_INTERNALS_X_CHALLENGE_WHITELIST_PATHS"] = [
-            "auth:headless:browser:account:current_session",
-            "auth:headless:browser:socialaccount:redirect_to_provider",
+            "headless:browser:account:current_session",
+            "headless:browser:socialaccount:redirect_to_provider",
             "internals:challenge",
             "internals:health_check",
         ]
