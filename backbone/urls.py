@@ -2,9 +2,12 @@ from importlib import import_module
 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.urls import include, path
 
-urlpatterns = []
+urlpatterns = [
+    path("admin/", admin.site.urls),
+]
 
 for app in settings.BACKBONE_APPS:
     try:
