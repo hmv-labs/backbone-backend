@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.postgres",
     "django_extensions",
+    "django_json_widget",
 ]
 
 BACKBONE_APPS = [

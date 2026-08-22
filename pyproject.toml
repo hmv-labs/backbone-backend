@@ -29,6 +29,7 @@ dependencies = [
     "requests==2.34.2",
     "PyJWT==2.13.0",
     "django-extensions==4.1",
+    "django-json-widget==2.1.1",
 ]
 
 [project.optional-dependencies]
