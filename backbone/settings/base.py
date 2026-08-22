@@ -83,6 +83,7 @@ BACKBONE_APPS = [
     "backbone.internals",
     "backbone.minio",
     "backbone.sentry",
+    "backbone.users",
 ]
 
 for app in BACKBONE_APPS:
