@@ -77,6 +77,7 @@ BACKBONE_APPS = [
     "backbone.auth",
     "backbone.celery",
     "backbone.channels",
+    "backbone.chat",
     "backbone.cors",
     "backbone.drf",
     "backbone.emails",
